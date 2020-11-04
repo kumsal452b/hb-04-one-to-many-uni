@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.kumsal.demo.entity.Course;
 import com.kumsal.demo.entity.Instructor;
 import com.kumsal.demo.entity.InstructorDetail;
+import com.kumsal.demo.entity.Review;
 import com.kumsal.demo.entity.Student;
 
 public class CreateCoursesandReviewDemo {
@@ -17,29 +18,22 @@ public class CreateCoursesandReviewDemo {
 				.addAnnotatedClass(Instructor.class)
 				.addAnnotatedClass(InstructorDetail.class)
 				.addAnnotatedClass(Course.class)
+				.addAnnotatedClass(Review.class)
 				.buildSessionFactory();
 		
 		Session session=sessionFactory.getCurrentSession();
 		
 		session.beginTransaction();
 		try {
+			Course tempCourse=new Course("Pacman-");
+			tempCourse.addReview(new Review("Great course....love it"));
+			tempCourse.addReview(new Review("love this is many"));
+			tempCourse.addReview(new Review("Nothing"));
 			
-		
-			int id=1;
-			Instructor tempInstructor=session.get(Instructor.class, id);
+			System.out.println("tempCourse :"+tempCourse);
+			System.out.println("review :"+tempCourse.getReviw());
 			
-			Course course1=new Course("Spring bohjhjot");
-			
-			Course course2=new Course("Andorid studio");
-			
-			tempInstructor.addCourse(course1);
-			tempInstructor.addCourse(course2);
-			
-			session.save(course1);
-			session.save(course2);
-
-			System.out.println("Saved :" +tempInstructor);
-			session.save(tempInstructor);
+			session.save(tempCourse);
 			
 			session.getTransaction().commit();
 			session.close();
