@@ -31,7 +31,7 @@ public class Course {
 	@JoinColumn(name="instructor_id")
 	private Instructor instructor;
 	
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="course",cascade=CascadeType.ALL)
 	private List<Review> reviw; 
 	
 	public Course() {
@@ -64,6 +64,12 @@ public class Course {
 		return "Course [id=" + id + ", title=" + title + ", instructor=" + instructor + "]";
 	}
 	
+	public List<Review> getReviw() {
+		return reviw;
+	}
+	public void setReviw(List<Review> reviw) {
+		this.reviw = reviw;
+	}
 	public void addReview(Review object){
 		if (reviw==null) {
 			reviw=new ArrayList<>();
