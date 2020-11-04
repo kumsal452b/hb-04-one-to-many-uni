@@ -34,5 +34,23 @@ public class Review {
 		super();
 		Comment = comment;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getComment() {
+		return Comment;
+	}
+	public void setComment(String comment) {
+		Comment = comment;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 	
 }
