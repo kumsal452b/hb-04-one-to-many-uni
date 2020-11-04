@@ -25,7 +25,14 @@ public class Review {
 	private String Comment;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="")
+	@JoinColumn(name="course_id")
 	private Course course;
+	public Review() {
+		// TODO Auto-generated constructor stub
+	}
+	public Review(String comment) {
+		super();
+		Comment = comment;
+	}
 	
 }
